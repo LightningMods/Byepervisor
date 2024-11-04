@@ -31,7 +31,6 @@ extern "C"
     int sceKernelSleep(int secs);
     int sceKernelLoadStartModule(char *name, size_t argc, const void *argv, uint32_t flags, void *unk, int *res);
     int __sys_is_development_mode();
-    int sceSystemStateMgrEnterStandby(void);
 }
 
 void dump_kernel_to_client(int client)
@@ -134,14 +133,18 @@ int main()
     if (kernel_read4(kdlsym(KERNEL_SYM_DATA_CAVE)) != 0x1337) {
         // Notify the user that they have to suspend/resume their console
         SOCK_LOG("[+] System needs to be suspended and resumed...\n");
+        flash_notification("Byepervisor\nEnter rest mode & resume");
         kernel_write4(kdlsym(KERNEL_SYM_DATA_CAVE), 0x1337);
 
-        // auto suspend
-        sceSystemStateMgrEnterStandby();
+        return 0;
     }
 
     // Print out the kernel base
     SOCK_LOG("[+] Kernel base = 0x%lx\n", ktext(0));
+
+    // run_dump_server(9003);
+    // reset_mirrors();
+    // return 0;
 
     // Apply patches
     if (apply_kernel_patches() != 0) {
@@ -178,8 +181,7 @@ int main()
 
     SOCK_LOG("[+] Aft. hook is_development_mode = 0x%x\n", __sys_is_development_mode());
 
-    run_self_server(9004);
-    // run_dump_server(9003);
     reset_mirrors();
+    run_self_server(9004);
     return 0;
 }

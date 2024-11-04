@@ -3,6 +3,8 @@
 ## Summary
 PS5 hypervisor exploit for <= 2.xx firmware. Two vulnerabilities and exploit chains are contained in the repo, they are independent of each other and either can be used. One exploit is provided mainly just for preservation (`/_old_jump_table_exploit`), only the primary exploit chain needs to be used (QA flags exploit).
 
+**This research was presented at hardwear.io NL 2024, slides can be found [here](https://github.com/PS5Dev/Byepervisor/blob/main/Byepervisor_%20Breaking%20PS5%20Hypervisor%20Security.pdf). The talk will be published soon.**
+
 **Jump Table Exploit**
 
 The first exploit uses a vulnerability where hypervisor code jump tables are shared with the guest kernel, and is contained in `/_old_jump_table_exploit/`. By hijacking the jump table entry for the `VMMCALL_HV_SET_CPUID_PS4` hypercall, code execution in the hypervisor can be achieved. We run a ROP chain that disables Nested Paging (NPT) and Guest Mode Execute Trap (GMET), which allows us to disable eXecute Only Memory (XOM) aka `xotext` in the kernel Page Table Entries (PTEs) to dump it, as well as enabling write in the PTEs to hook/patch the kernel as well.
