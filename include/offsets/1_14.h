@@ -1,7 +1,7 @@
-#ifndef OFFSETS_1_05_H
-#define OFFSETS_1_05_H
+#ifndef OFFSETS_1_14_H
+#define OFFSETS_1_14_H
 
-uint64_t g_sym_map_105[] = {
+uint64_t g_sym_map_114[] = {
     0x4ADF5B0,          // KERNEL_SYM_DMPML4I
     0x4ADF5B4,          // KERNEL_SYM_DMPDPI
     0x4ADF30C,          // KERNEL_SYM_PML4PML4I
@@ -13,11 +13,11 @@ uint64_t g_sym_map_105[] = {
     0x0042000,          // KERNEL_SYM_GADGET_JMP_PTR_RSI
 };
 
-uint64_t g_patch_map_105[] = {
-    0x05A9C20,          // KERNEL_PATCH_HAS_MMAP_SELF_CAPABILITY
-    0x05A9C30,          // KERNEL_PATCH_IS_ALLOWED_TO_MMAP_SELF
-    0x0981909,          // KERNEL_PATCH_MMAP_SELF_CALL_IS_LOADABLE
-    0x02F17D0,          // KERNEL_PATCH_SYS_GETGID
+uint64_t g_patch_map_114[] = {
+    0x05A9D10,          // KERNEL_PATCH_HAS_MMAP_SELF_CAPABILITY
+    0x05A9D20,          // KERNEL_PATCH_IS_ALLOWED_TO_MMAP_SELF
+    0x0982139,          // KERNEL_PATCH_MMAP_SELF_CALL_IS_LOADABLE
+    0x02F1810,          // KERNEL_PATCH_SYS_GETGID
 };
 
-#endif // OFFSETS_1_05_H
+#endif // OFFSETS_1_14_H
