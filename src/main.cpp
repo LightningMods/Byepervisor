@@ -134,10 +134,11 @@ int main()
     if (kernel_read4(kdlsym(KERNEL_SYM_DATA_CAVE)) != 0x1337) {
         // Notify the user that they have to suspend/resume their console
         SOCK_LOG("[+] System needs to be suspended and resumed...\n");
+        flash_notification("Entering rest mode for Byepervisor in 3 secs");
         kernel_write4(kdlsym(KERNEL_SYM_DATA_CAVE), 0x1337);
-
-        // auto suspend
+        sleep(3);
         sceSystemStateMgrEnterStandby();
+        return 0;
     }
 
     // Print out the kernel base
